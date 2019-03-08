@@ -1,0 +1,102 @@
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" id="spell_search" onkeyup="searchSpells()" placeholder="Search for names.." autocomplete="off">
+  </div>
+  <%# <div class="form-group row">
+      <div class="form-group">
+        <select class="form-control" id="spell_level" onchange="filters()">
+          <option value="" selected disabled hidden>Level</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+      </div>
+    </div> %>
+</form>
+
+
+
+<table id="spell_table" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Level</th>
+      <th scope="col">Name</th>
+      <th scope="col">School</th>
+      <th scope="col">Casting Time</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Components</th>
+      <th scope="col">Concentration</th>
+      <th scope="col">Ritual</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @spells.each do |spell| %>
+    
+      <tr class="table-primary">
+          <td><%= link_to spell, :class => "no-link text-white level" do %><%= spell.level %><% end %></td>
+          <td><%= link_to spell, :class => "no-link text-white name" do %><%= spell.name %><% end %></td>
+          <td><%= link_to spell, :class => "no-link text-white school" do %><%= spell.school %><% end %></td>
+          <% if spell.casting_time.include? "reaction" %>
+            <td><%= link_to spell, :class => "no-link text-white casting" do %>1 reaction<% end %></td>
+          <% else %>
+            <td><%= link_to spell, :class => "no-link text-white casting" do %><%= spell.casting_time %><% end %></td>
+          <% end %>
+          <td><%= link_to spell, :class => "no-link text-white duration" do %><%= spell.duration %><% end %></td>
+          <td><%= link_to spell, :class => "no-link text-white compon" do %><%= spell.components %><% end %></td>
+          <td><%= link_to spell, :class => "no-link text-white conc" do %><%= spell.concentration %><% end %></td>
+          <td><%= link_to spell, :class => "no-link text-white ritual" do %><%= spell.ritual %><% end %></td> 
+      </tr>
+  <% end %>
+  </tbody>
+</table> 
+
+<script type="text/javascript">
+  $('#inputDatabaseName').on('input',function(e){
+    $( '#spell_table tr' ).each(function() {
+      if ($(this).find('.name').text() != $('#inputDatabaseName').val().trim()) {
+        $(this).hide()
+      }
+    });
+  });
+</script>
+
+<script>
+function searchSpells() {
+  // Declare variables
+  var input, filter;
+  input = $('#spell_search');
+  filter = input.val().toUpperCase();
+    $('#spell_table tbody tr').each(function() {
+      if ($(this).find('.name').text().toUpperCase().startsWith(filter)) {
+        $(this).show();
+        // filters();
+      } else {
+        $(this).hide();
+      }
+
+    });
+}
+
+// function filters() {
+//   // Declare variables
+//   var input, filter;
+//   input = $('#spell_level');
+//   filter = input.val().toUpperCase();
+//     $('#spell_table tbody tr').each(function() {
+//       if ($(this).find('.level').text().toUpperCase() == filter) {
+//         $(this).show()
+//       } else {
+//         $(this).hide();
+//       }
+
+//     });
+// }
+
+</script>

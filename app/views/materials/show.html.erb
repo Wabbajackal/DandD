@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <h1 class="display-3"><%= @material.name %></h1>
+    <hr class="my-4">
+    <p class="lead" style="font-style: italic;"><%= @material.description %></p>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <b>Rarity:</b>
+            <p><%= @material.rarity.name %></p>
+            <b>Type:</b>
+            <p><%= @material.mat_type %></p>
+            <b>Durabiltiy:</b>
+            <p><%= @material.durability %></p>
+            <b>Damage Threshold:</b>
+            <p><%= @material.threshold %></p>
+        </div>
+        <div class="col vertical-line">
+            <b>Natural Properties:</b>
+            <p><%= @material.natural %></p>
+            <b>Ammunition Properties:</b>
+            <p><%= @material.ammunition %></p>
+            <b>Weapon Properties:</b>
+            <p><%= @material.weapon %></p>
+            <b>Armor Properties:</b>
+            <p><%= @material.armor %></p>
+            <b>Shield Properties:</b>
+            <p><%= @material.shield %></p>
+        </div>
+    </div>
+    
+    <%# <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p> %>
+</div>

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  level: 1
+  name: MyString
+  school: MyString
+  casting_time: MyString
+  range: MyString
+  ritual: MyString
+  duration: MyString
+  components: MyString
+  materials: MyString
+  description: MyText
+  classes: MyString
+  source: MyString
+
+two:
+  level: 1
+  name: MyString
+  school: MyString
+  casting_time: MyString
+  range: MyString
+  ritual: MyString
+  duration: MyString
+  components: MyString
+  materials: MyString
+  description: MyText
+  classes: MyString
+  source: MyString

@@ -1,0 +1,75 @@
+<% 
+    panda = [nil, 'Racial', 'Weapon', 'Armor']
+%>
+
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" id="feat_search" onkeyup="searchFeats()" placeholder="Search for feats by name or by ability score.." autocomplete="off">
+  </div>
+</form>
+
+<% panda.each do |pas| %>
+    <div class="feat_table">
+
+    <div class="title">
+    <%
+    case pas
+    when nil %>
+    <% when "Racial" %>
+        <h2>Racial Feats</h2>
+    <% when "Weapon" %>
+        <h2>Weapon Feats</h2>
+    <% when "Armor" %>
+        <h2>Armor Feats</h2>
+    <% end %>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Source</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @feats.each do |feat| %>
+                <% if feat.feat_type == pas %>
+                    <tr class="table-primary text-white">
+                        <td class="align-middle name"><%= feat.name %></td>
+                        <td class="align-middle"><%= feat.source %></td>
+                        <td class="stats" style="display:none"><%= feat.feat_stats %></td>
+                        <td><%= simple_format(feat.description) %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+<% end %>
+
+<script>
+function searchFeats() {
+  // Declare variables
+    var input, filter, stuff;
+    input = $('#feat_search');
+    filter = input.val().toUpperCase().trim();
+    $('.feat_table table tbody tr').each(function() {
+        if ($(this).find('.name').text().toUpperCase().startsWith(filter) || $(this).find('.stats').text().toUpperCase().indexOf(filter) > -1) {
+            $('.feat_table table').show();
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+
+    $('.feat_table table tbody').each(function() {
+        if($(this).find('tr:visible').length == 0) {
+            $(this).parent().parent().find('.title').hide()
+            $(this).parent().hide()
+        } else {
+            $(this).parent().parent().find('.title').show()
+            $(this).parent().show()
+        }
+    });
+}
+</script>

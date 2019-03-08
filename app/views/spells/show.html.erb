@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <h1 class="display-5"><%= @spell.name %></h1>
+    
+    <p style="font-style: italic;">Level <%= @spell.level %> - <%= @spell.school %></p>
+    <hr class="my-4">
+    <span><b>Casting Time: </b><%= @spell.casting_time %></span><br>
+    <span><b>Range: </b><%= @spell.range %></span><br>
+    <span>
+        <b>Components: </b><%= @spell.components %> 
+        <% if @spell.materials != "None" %>
+            (<%= @spell.materials %>)</sub>
+        <% end %>
+    </span><br>
+    <span><b>Duration: </b><%= @spell.duration %></span><br>
+    <span><b>Concentration: </b><%= @spell.concentration %></span><br>
+    <span><b>Ritual: </b><%= @spell.ritual %></span><br>
+    <span><b>Classes: </b><%= @spell.classes %></span>
+
+    <hr class="my-4">
+    <p class="lead" style="font-style: italic;"><%= simple_format(@spell.description) %></p>
+    <hr class="my-4">
+    <p style="font-style: italic;">Source: <%= @spell.source %></p>
+</div>

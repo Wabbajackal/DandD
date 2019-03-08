@@ -1,0 +1,64 @@
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" id="material_search" onkeyup="searchMaterials()" placeholder="Search for materials.." autocomplete="off">
+  </div>
+</form>
+
+<div class="row">
+    <% @materials.each do |material| %>
+        <% if material.published == false %>
+            <div class="col-sm-4">
+                <div class="card text-white bg-primary mb-3 zoom" style="max-width: 30rem;">
+                    <%= link_to material, :class => "no-link text-white" do %>
+                    <div class="card-body">
+                        <% if material.mat_type == "Metal" %>
+                            <%= image_tag("menu/gold-bar.png", alt: "Metal", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Wood" %>
+                            <%= image_tag("menu/log.png", alt: "Wood", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Crystal" %>
+                            <%= image_tag("menu/crystal-growth.png", alt: "Crystal", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Creature Part" %>
+                            <%= image_tag("menu/pawprint.png", alt: "Creature Part", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Stone" %>
+                            <%= image_tag("menu/stone-pile.png", alt: "Stone", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Mineral" %>
+                            <%= image_tag("menu/minerals.png", alt: "Mineral", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Silk" %>
+                            <%= image_tag("menu/spider-web.png", alt: "Silk", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Fabric" %>
+                            <%= image_tag("menu/rolled-cloth.png", alt: "Fabric", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Plant" %>
+                            <%= image_tag("menu/falling-leaf.png", alt: "Plant", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Amber" %>
+                            <%= image_tag("menu/amber-mosquito.png", alt: "Amber", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% elsif material.mat_type == "Ice" %>
+                            <%= image_tag("menu/ice-cube.png", alt: "Ice", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% else%>
+                            <%= image_tag("menu/help.png", alt: "Unknown", class: "align-center", style: 'width:100%;height:auto;') %>
+                        <% end %>
+                        
+                    </div>
+                    <div class="card-footer text-center name"><%= material.name%></div>
+                <% end %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>
+
+<script>
+function searchMaterials() {
+  var input, filter;
+  input = $('#material_search');
+  filter = input.val().toUpperCase();
+    $('.row .col-sm-4 .card').each(function() {
+      if ($(this).find('.name').text().toUpperCase().indexOf(filter) > -1) {
+        $(this).parent().show();
+        // filters();
+      } else {
+        $(this).parent().hide();
+      }
+
+    });
+}
+</script>
