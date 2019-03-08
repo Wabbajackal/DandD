@@ -33,7 +33,7 @@
       </ul>
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-success active">
-          <input id="official_button" type="checkbox" checked="" autocomplete="off"> Official
+          <input id="official_button" type="checkbox" checked="" autocomplete="off" value="official"> Official
         </label>
       </div>
       <%# <form class="form-inline my-2 my-lg-0">
@@ -57,6 +57,17 @@
 
 <script>
   $('#official_button').change(function() {
-    alert( "changed." );
+    if($(this).val() == 'official') {
+      $(this).parent().removeClass('btn-success');
+      $(this).parent().addClass('btn-danger');
+      $(this).val('homebrew');
+      $(this).text('Homebrew');
+    }
+    else {
+      $(this).parent().removeClass('btn-danger');
+      $(this).parent().addClass('btn-success');
+      $(this).val('official');
+      $(this).text('Official');
+    }
   });
 </script>
